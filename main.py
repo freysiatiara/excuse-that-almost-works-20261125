@@ -51,6 +51,10 @@ def main():
     with open(path, "w", encoding="utf-8", newline="") as handle:
         handle.write(LINE)
     os.chmod(path, 0o644)
+    with open(path, "r", encoding="utf-8", newline="") as handle:
+        written = handle.read()
+    if written != LINE:
+        raise ValueError("entry file content does not match the intended line")
 
 
 if __name__ == "__main__":
